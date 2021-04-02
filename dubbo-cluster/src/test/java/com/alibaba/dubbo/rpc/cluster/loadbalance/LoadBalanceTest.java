@@ -50,7 +50,7 @@ import static org.mockito.Mockito.mock;
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class LoadBalanceTest {
     Invocation invocation;
-    List<Invoker<LoadBalanceTest>> invokers = new ArrayList<Invoker<LoadBalanceTest>>();
+    List<Invoker<LoadBalanceTest>> invokers = new ArrayList();
     Invoker<LoadBalanceTest> invoker1;
     Invoker<LoadBalanceTest> invoker2;
     Invoker<LoadBalanceTest> invoker3;
@@ -126,7 +126,7 @@ public class LoadBalanceTest {
         int runs = 1000;
         Map<Invoker, AtomicLong> counter = getInvokeCounter(runs, RoundRobinLoadBalance.NAME);
         for (Invoker minvoker : counter.keySet()) {
-            Long count = counter.get(minvoker).get();
+            long count = counter.get(minvoker).get();
             Assert.assertTrue("abs diff shoud < 1", Math.abs(count - runs / (0f + invokers.size())) < 1f);
         }
     }

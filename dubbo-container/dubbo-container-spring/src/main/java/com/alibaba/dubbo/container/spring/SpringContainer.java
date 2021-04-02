@@ -21,6 +21,7 @@ import com.alibaba.dubbo.common.logger.LoggerFactory;
 import com.alibaba.dubbo.common.utils.ConfigUtils;
 import com.alibaba.dubbo.container.Container;
 
+import com.alibaba.fastjson.JSON;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -43,7 +44,9 @@ public class SpringContainer implements Container {
         if (configPath == null || configPath.length() == 0) {
             configPath = DEFAULT_SPRING_CONFIG;
         }
-        context = new ClassPathXmlApplicationContext(configPath.split("[,\\s]+"));
+        String[] split = configPath.split("[,\\s]+");
+        logger.info("split:{"+JSON.toJSONString(split)+"}");
+        context = new ClassPathXmlApplicationContext(split);
         context.start();
     }
 

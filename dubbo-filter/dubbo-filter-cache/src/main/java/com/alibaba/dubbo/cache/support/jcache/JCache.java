@@ -47,8 +47,8 @@ public class JCache implements com.alibaba.dubbo.cache.Cache {
         Cache<Object, Object> cache = cacheManager.getCache(key);
         if (cache == null) {
             try {
-                //configure the cache
-                MutableConfiguration config =
+                // configure the cache
+                MutableConfiguration<Object, Object> config =
                         new MutableConfiguration<Object, Object>()
                                 .setTypes(Object.class, Object.class)
                                 .setExpiryPolicyFactory(CreatedExpiryPolicy.factoryOf(new Duration(TimeUnit.MILLISECONDS, url.getMethodParameter(method, "cache.write.expire", 60 * 1000))))
